@@ -1,0 +1,13 @@
+{
+  "name": "mustate",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^23.0.0-alpha.0"
+  }
+}
