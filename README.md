@@ -39,5 +39,5 @@ The example below demonstrates changing a deeply nested value (a3), both with an
 #### Install
 
 ```
-    npm install --save mustate.js
+    npm install --save mustate-js
 ```
