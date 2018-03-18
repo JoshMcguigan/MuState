@@ -76,4 +76,14 @@ describe('MuState', ()=>{
         expect(ref1).not.toBe(ref2);
         expect(muState.c.c1).toEqual([1,2,3,4]);
     });
+
+    it('should support removing array items with the pop method', ()=>{
+        const ref1 = muState.c.c1;
+        const poppedValue = muState.c.c1.pop();
+        const ref2 = muState.c.c1;
+
+        expect(ref1).not.toBe(ref2);
+        expect(poppedValue).toBe(3);
+        expect(muState.c.c1).toEqual([1,2]);
+    })
 });
