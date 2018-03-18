@@ -1,14 +1,18 @@
 {
   "name": "mustate-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Easy immutable state through metaprogramming",
   "scripts": {
     "prepublish": "npx babel src/MuState.js --out-file lib/MuState.js",
     "test": "jest --watch"
   },
   "babel": {
-    "presets": ["es2015"],
-    "plugins": ["transform-object-rest-spread"]
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
   },
   "author": "Josh Mcguigan",
   "license": "MIT",
