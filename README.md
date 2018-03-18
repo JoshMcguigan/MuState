@@ -6,6 +6,8 @@ This behavior is useful anytime object reference equality is used to determine i
 
 ##### Example
 
+The example below demonstrate changing a deeply nested value (a3), both with and without MuState.
+
 ```
     let state = {
                 a: {
@@ -24,8 +26,8 @@ This behavior is useful anytime object reference equality is used to determine i
                 }
             };
     
-    // without MuState        
-    state = { a: { ...state.a, a1: { ...state.a.a1, a2: { ...state.a.a1.a2, a3: 10 } } } }
+    // without MuState     
+    state = { a: { ...state.a, a1: { ...state.a.a1, a2: { ...state.a.a1.a2, a3: 10 } } } };
     
     // with MuState
     let muState = new MuState(state);
