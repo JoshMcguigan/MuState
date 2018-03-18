@@ -1,13 +1,15 @@
 {
-  "name": "mustate",
+  "name": "mustate-js",
   "version": "0.0.1",
-  "description": "",
+  "description": "Easy immutable state through metaprogramming",
   "scripts": {
     "test": "jest --watch"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
+  "author": "Josh Mcguigan",
+  "license": "MIT",
+  "devDependencies": {
     "jest": "^23.0.0-alpha.0"
-  }
+  },
+  "repository": "github:JoshMcguigan/MuState",
+  "main": "src/MuState.js"
 }

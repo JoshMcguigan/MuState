@@ -4,11 +4,13 @@ MuState is an object wrapper which allows changing values deep in the object str
 
 This behavior is useful anytime object reference equality is used to determine if an object (or its children) has changed value (react-redux is a common case of this).
 
-##### Example
+#### Example
 
-The example below demonstrate changing a deeply nested value (a3), both with and without MuState.
+The example below demonstrates changing a deeply nested value (a3), both with and without MuState.
 
 ```
+    const MuState = require('mustate-js');
+
     let state = {
                 a: {
                     a1: {
@@ -32,4 +34,10 @@ The example below demonstrate changing a deeply nested value (a3), both with and
     // with MuState
     let muState = new MuState(state);
     muState.a.a1.a2.a3 = 10;
+```
+
+#### Install
+
+```
+    npm install --save mustate.js
 ```
