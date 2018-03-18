@@ -2,6 +2,19 @@ class MuState {
     constructor(state, origin = state, lineage = []){
         const proxies = {};
 
+        const updateObjectChain = () => {
+            let objectToModify = origin;
+            for(let i=0; i<lineage.length; i++){
+                if( Array.isArray(objectToModify[lineage[i]]) ){
+                    objectToModify[lineage[i]] = [...objectToModify[lineage[i]]];
+                } else {
+                    objectToModify[lineage[i]] = {...objectToModify[lineage[i]]};
+                }
+                objectToModify = objectToModify[lineage[i]];
+            }
+            return objectToModify;
+        };
+
         return new Proxy(state, {
             get(target, key, reciever){
                 if (typeof target[key] === 'object'){
@@ -25,16 +38,15 @@ class MuState {
             },
             set(target, key, value, reciever){
                 // create new object (as copy of the existing object) for each object in the chain to the changed value
-                let objectToModify = origin;
-                for(let i=0; i<lineage.length; i++){
-                    if( Array.isArray(objectToModify[lineage[i]]) ){
-                        objectToModify[lineage[i]] = [...objectToModify[lineage[i]]];
-                    } else {
-                        objectToModify[lineage[i]] = {...objectToModify[lineage[i]]};
-                    }
-                    objectToModify = objectToModify[lineage[i]];
-                }
+                const objectToModify = updateObjectChain();
                 objectToModify[key] = value;
+                return true;
+            },
+            deleteProperty(target, property) {
+                if( ! Array.isArray(target) ){
+                    const objectToModify = updateObjectChain();
+                    delete objectToModify[property]
+                }
                 return true;
             }
         })

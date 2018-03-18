@@ -96,4 +96,12 @@ describe('MuState', ()=>{
         expect(muState.a.a1.a2).toEqual({a3: 3, a4: 4, a5: 10});
     });
 
+    it('should support deleting object keys', ()=>{
+        const ref1 = muState.a;
+        delete muState.a.a1.a2.a4;
+        const ref2 = muState.a;
+
+        expect(ref1).not.toBe(ref2);
+        expect(muState.a.a1.a2).toEqual({a3: 3});
+    });
 });
