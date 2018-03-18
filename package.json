@@ -3,13 +3,22 @@
   "version": "0.0.2",
   "description": "Easy immutable state through metaprogramming",
   "scripts": {
+    "prepublish": "npx babel src/MuState.js --out-file lib/MuState.js",
     "test": "jest --watch"
+  },
+  "babel": {
+    "presets": ["es2015"],
+    "plugins": ["transform-object-rest-spread"]
   },
   "author": "Josh Mcguigan",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "jest": "^23.0.0-alpha.0"
   },
   "repository": "github:JoshMcguigan/MuState",
-  "main": "src/MuState.js"
+  "main": "lib/MuState.js"
 }
