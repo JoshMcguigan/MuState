@@ -85,5 +85,15 @@ describe('MuState', ()=>{
         expect(ref1).not.toBe(ref2);
         expect(poppedValue).toBe(3);
         expect(muState.c.c1).toEqual([1,2]);
-    })
+    });
+
+    it('should support adding object keys', ()=>{
+        const ref1 = muState.a;
+        muState.a.a1.a2.a5 = 10;
+        const ref2 = muState.a;
+
+        expect(ref1).not.toBe(ref2);
+        expect(muState.a.a1.a2).toEqual({a3: 3, a4: 4, a5: 10});
+    });
+
 });
