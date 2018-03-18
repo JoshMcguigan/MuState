@@ -27,10 +27,15 @@ class MuState {
                 // create new object (as copy of the existing object) for each object in the chain to the changed value
                 let objectToModify = origin;
                 for(let i=0; i<lineage.length; i++){
-                    objectToModify[lineage[i]] = {...objectToModify[lineage[i]]};
+                    if( Array.isArray(objectToModify[lineage[i]]) ){
+                        objectToModify[lineage[i]] = [...objectToModify[lineage[i]]];
+                    } else {
+                        objectToModify[lineage[i]] = {...objectToModify[lineage[i]]};
+                    }
                     objectToModify = objectToModify[lineage[i]];
                 }
-                Reflect.set(target, key, value, reciever);
+                objectToModify[key] = value;
+                return true;
             }
         })
     }

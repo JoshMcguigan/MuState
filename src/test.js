@@ -17,6 +17,10 @@ describe('MuState', ()=>{
             b: {
                 b1: 5,
                 b2: 6
+            },
+            c: {
+                c1: [1, 2, 3],
+                c2: [{c3: 3}, {c4: 4}]
             }
         };
 
@@ -27,8 +31,8 @@ describe('MuState', ()=>{
         const ref1 = muState.b;
         const ref2 = muState.b;
 
-        const ref3 = muState.a;
-        const ref4 = muState.a;
+        const ref3 = muState.a.a1;
+        const ref4 = muState.a.a1;
 
         expect(ref1).toBe(ref2);
         expect(ref3).toBe(ref4);
@@ -46,23 +50,30 @@ describe('MuState', ()=>{
         expect(ref1).not.toBe(ref2);
         expect(ref3).not.toBe(ref4);
     });
+
+    it('should support setting values', ()=>{
+        const ref1 = muState.b;
+        muState.b.b1 = 10;
+        const ref2 = muState.b;
+
+        expect(muState.b.b1).toBe(10);
+    });
+
+    it('should support arrays in the chain of objects', ()=>{
+        const ref1 = muState.c;
+        muState.c.c2[0].c3 = 4;
+        const ref2 = muState.c;
+
+        expect(ref1).not.toBe(ref2);
+        expect(muState.c.c2[0].c3).toBe(4);
+    });
+
+    it('should support adding to an array using the push method', ()=>{
+        const ref1 = muState.c.c1;
+        muState.c.c1.push(4);
+        const ref2 = muState.c.c1;
+
+        expect(ref1).not.toBe(ref2);
+        expect(muState.c.c1).toEqual([1,2,3,4]);
+    });
 });
-
-state = {
-    a: {
-        a1: {
-            a2: {
-                a3: 3,
-                a4: 4
-            },
-            b2: {
-            }
-        },
-        b1: {
-        }
-    },
-    b: {
-    }
-};
-
-state = { a: { ...state.a, a1: { ...state.a.a1, a2: { ...state.a.a1.a2, a3: 10 } } } }
