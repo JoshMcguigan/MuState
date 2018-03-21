@@ -41,3 +41,9 @@ The example below demonstrates changing a deeply nested value (a3), both with an
 ```
     npm install --save mustate-js
 ```
+
+#### Requirements
+
+MuState uses Javascript Proxies, which are not polyfill-able. Be sure that your target environment supports Proxies before using MuState.
+
+[MDN - Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
